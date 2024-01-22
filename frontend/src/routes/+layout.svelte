@@ -10,6 +10,9 @@
   import { onDestroy } from "svelte";
   import "uno.css";
 
+  export let data;
+  $: groups = data.groups;
+
   let initialized = false;
   const unsubscribeInit = client.initialized.subscribe(
     (value) => (initialized = value)
@@ -34,7 +37,7 @@
 
 <SkipToContent />
 
-<Navigation />
+<Navigation {groups} />
 
 {#if !initialized}
   <Loading />

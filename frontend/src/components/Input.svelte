@@ -3,6 +3,14 @@
 
   export let value = "";
   export let label: string;
+  export let help: string = "";
+  export let required = false;
 </script>
 
-<TextInput labelText={label} bind:value {...$$restProps} />
+<TextInput
+  labelText={label}
+  helperText={help}
+  {required}
+  bind:value
+  {...$$restProps}
+/>

@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 
-export type ToastLevel = "info" | "error" | "success";
+export type ToastLevel = "info" | "error" | "success" | "warning";
 
 type Toast = {
   id: number;
@@ -47,6 +47,13 @@ class Toasts {
    */
   success(message: string) {
     this.add(message, "success");
+  }
+
+  /**
+   * Toast a message with level WARNING
+   */
+  warning(message: string) {
+    this.add(message, "warning");
   }
 }
 

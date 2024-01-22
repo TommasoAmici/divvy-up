@@ -1,12 +1,18 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import { client } from "$lib/client";
+  import { toasts } from "$lib/toast";
   import { HeaderGlobalAction } from "carbon-components-svelte";
   import Logout from "carbon-icons-svelte/lib/Logout.svelte";
 
   async function onClick() {
-    await client.logout();
-    goto("/login");
+    try {
+      await client.logout();
+      toasts.info("Successfully logged out");
+      await goto("/login", { invalidateAll: true });
+    } catch (error) {
+      toasts.error("Failed to logout");
+    }
   }
 </script>
 

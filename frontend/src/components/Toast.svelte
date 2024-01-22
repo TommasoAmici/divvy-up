@@ -11,6 +11,7 @@
     info: "Info",
     error: "Error",
     success: "Success",
+    warning: "Warning",
   };
 
   const title = levelTitles[level];

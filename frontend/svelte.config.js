@@ -11,8 +11,7 @@ const config = {
     adapter: adapter({
       pages: "../pb_public",
       assets: "../pb_public",
-      fallback: undefined,
-      strict: true,
+      fallback: "index.html",
     }),
     alias: {
       $components: "src/components",

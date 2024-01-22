@@ -1,0 +1,55 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build frontend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: 1.0.24
+
+      - run: bun install --ignore-scripts --no-progress
+      - run: bun run test:ci
+      - run: bun run check
+      - run: bun run build
+
+      - name: rsync static files
+        uses: burnett01/rsync-deployments@6.0.0
+        if: github.ref == 'refs/heads/main'
+        with:
+          switches: -avzr --delete
+          path: pb_public
+          remote_path: /apps/splitwise/pb_public
+          remote_host: ${{ secrets.HOST }}
+          remote_port: ${{ secrets.PORT }}
+          remote_user: ${{ secrets.USER }}
+          remote_key: ${{ secrets.KEY }}
+
+      - name: rsync static files
+        uses: burnett01/rsync-deployments@6.0.0
+        if: github.ref == 'refs/heads/main'
+        with:
+          switches: -avzr --delete
+          path: pb_migrations
+          remote_path: /apps/splitwise/pb_migrations
+          remote_host: ${{ secrets.HOST }}
+          remote_port: ${{ secrets.PORT }}
+          remote_user: ${{ secrets.USER }}
+          remote_key: ${{ secrets.KEY }}

@@ -8,6 +8,7 @@
   import PageTitle from "$components/PageTitle.svelte";
   import PasswordInput from "$components/PasswordInput.svelte";
   import { client } from "$lib/client";
+  import { toasts } from "$lib/toast";
   import { get } from "svelte/store";
 
   let name = "";
@@ -16,9 +17,12 @@
 
   async function onSubmit(e: Event) {
     e.preventDefault();
-    const created = await client.signup(name, email, password);
-    if (created) {
-      goto("/login");
+    try {
+      await client.signup(name, email, password);
+      toasts.success("User created successfully");
+      await goto("/login");
+    } catch (error) {
+      toasts.error("Could not create user");
     }
   }
 
@@ -32,13 +36,19 @@
 
 <Form {onSubmit}>
   <FormGroup>
-    <Input bind:value={name} label="Name" name="name" />
+    <Input bind:value={name} label="Name" name="name" required />
   </FormGroup>
   <FormGroup>
-    <Input bind:value={email} label="Email" type="email" name="email" />
+    <Input
+      bind:value={email}
+      label="Email"
+      type="email"
+      name="email"
+      required
+    />
   </FormGroup>
   <FormGroup>
-    <PasswordInput bind:value={password} />
+    <PasswordInput bind:value={password} required />
   </FormGroup>
   <Button type="submit">Sign Up</Button>
 </Form>

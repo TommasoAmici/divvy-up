@@ -18,7 +18,7 @@
     e.preventDefault();
     const authorized = await client.login(email, password);
     if (authorized) {
-      goto("/");
+      await goto("/", { invalidateAll: true });
     } else {
       toasts.error("Failed to login");
     }
@@ -26,7 +26,7 @@
 
   let authorized = get(client.authorized);
   if (browser && authorized) {
-    goto("/");
+    goto("/", { invalidateAll: true });
   }
 </script>
 
@@ -34,10 +34,16 @@
 
 <Form {onSubmit}>
   <FormGroup>
-    <Input bind:value={email} label="Email" type="email" name="email" />
+    <Input
+      bind:value={email}
+      label="Email"
+      type="email"
+      name="email"
+      required
+    />
   </FormGroup>
   <FormGroup>
-    <PasswordInput bind:value={password} />
+    <PasswordInput bind:value={password} required />
   </FormGroup>
   <Button type="submit">Login</Button>
 </Form>

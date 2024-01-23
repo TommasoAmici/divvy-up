@@ -26,9 +26,13 @@ jobs:
           bun-version: 1.0.24
 
       - run: bun install --ignore-scripts --no-progress
+        working-directory: ./frontend
       - run: bun run test:ci
+        working-directory: ./frontend
       - run: bun run check
+        working-directory: ./frontend
       - run: bun run build
+        working-directory: ./frontend
 
       - name: rsync static files
         uses: burnett01/rsync-deployments@6.0.0

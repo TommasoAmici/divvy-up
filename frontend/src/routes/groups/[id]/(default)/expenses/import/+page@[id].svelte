@@ -103,7 +103,13 @@
       />
     </FormGroup>
     <FormGroup>
-      <Combobox bind:selected={amountColumn} label="Amount" required {items} />
+      <Combobox
+        bind:selected={amountColumn}
+        label="Amount"
+        required
+        {items}
+        help="Negative amounts are converted to their absolute value. Example: -2.00 will become 2.00"
+      />
     </FormGroup>
     <FormGroup>
       <Combobox bind:selected={dateColumn} label="Date" {items} />

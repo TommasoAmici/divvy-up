@@ -86,7 +86,7 @@ export class Importer {
       if (amountColumn) {
         const value = row[amountColumn];
         if (typeof value === "string") {
-          datum[amountColumn] = parseUnkownFloat(value);
+          datum[amountColumn] = Math.abs(parseUnkownFloat(value));
         }
       }
 
@@ -148,7 +148,7 @@ export class Importer {
       let amount: number;
       const value = row[amountColumn];
       if (typeof value === "string") {
-        amount = parseUnkownFloat(value);
+        amount = Math.abs(parseUnkownFloat(value));
       } else {
         throw new Error("Invalid amount");
       }

@@ -21,7 +21,7 @@
   );
   onDestroy(unsubscribe);
 
-  export let groups: Group[];
+  export let groups: Group[] | undefined;
   let isSideNavOpen = true;
   let userMenuOpen = false;
 

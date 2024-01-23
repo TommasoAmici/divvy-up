@@ -21,12 +21,12 @@
   let importer: Importer | undefined;
   $: items = importer?.headers.map((h) => ({ id: h, text: h })) ?? [];
 
-  let dateColumn: string | undefined = data.importSettings.settings.dateColumn;
-  let dateFormat: string | undefined = data.importSettings.settings.dateFormat;
+  let dateColumn: string | undefined = data.importSettings?.settings.dateColumn;
+  let dateFormat: string | undefined = data.importSettings?.settings.dateFormat;
   let descriptionColumn: string | undefined =
-    data.importSettings.settings.descriptionColumn;
+    data.importSettings?.settings.descriptionColumn;
   let amountColumn: string | undefined =
-    data.importSettings.settings.amountColumn;
+    data.importSettings?.settings.amountColumn;
 
   let uploading = false;
 

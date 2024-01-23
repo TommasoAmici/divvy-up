@@ -160,7 +160,7 @@ export class Importer {
 
       formatted.push({ date, amount, description });
     }
-    console.log(formatted);
+
     return formatted;
   }
 }

@@ -40,7 +40,7 @@
       <Input bind:value={description} label="Description" name="description" />
     </FormGroup>
     <FormGroup>
-      <NumberInput bind:value={amount} label="Amount" name="amount" min={0} />
+      <NumberInput bind:value={amount} label="Amount" name="amount" />
     </FormGroup>
     <FormGroup>
       <DateInput bind:value={date} />

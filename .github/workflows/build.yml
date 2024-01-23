@@ -40,7 +40,7 @@ jobs:
         with:
           switches: -avzr --delete
           path: pb_public
-          remote_path: /apps/splitwise/
+          remote_path: /apps/divvyup/
           remote_host: ${{ secrets.HOST }}
           remote_port: ${{ secrets.PORT }}
           remote_user: ${{ secrets.USER }}
@@ -52,7 +52,7 @@ jobs:
         with:
           switches: -avzr --delete
           path: pb_migrations
-          remote_path: /apps/splitwise/
+          remote_path: /apps/divvyup/
           remote_host: ${{ secrets.HOST }}
           remote_port: ${{ secrets.PORT }}
           remote_user: ${{ secrets.USER }}

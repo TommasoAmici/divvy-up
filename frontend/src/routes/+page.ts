@@ -5,7 +5,7 @@ import { goto } from "$app/navigation";
 //  at the moment
 export async function load({ parent }) {
   const data = await parent();
-  const groupID = data.groups[0].id;
+  const groupID = data.groups?.[0].id;
   if (groupID) {
     return goto(`/groups/${groupID}`);
   }

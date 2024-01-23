@@ -35,7 +35,7 @@
   }
 </script>
 
-<Header platformName="Divvy" bind:isSideNavOpen>
+<Header platformName="DivvyUp" bind:isSideNavOpen>
   <HeaderUtilities>
     {#if authorized}
       <HeaderAction

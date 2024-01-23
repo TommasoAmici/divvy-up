@@ -28,6 +28,8 @@ file to the fields in the expense.
 Finally, the import preview allows you to review the expenses before they are
 added to the group.
 
+https://github.com/TommasoAmici/divvy-up/assets/424525/86a13fd5-c754-4c88-b90b-c63606122f69
+
 ## Deployment
 
 ### Build frontend
